@@ -1,6 +1,6 @@
 ---
 layout: default  
-title: Column-wise Manipulations  
+title: Manipulating Columns 
 nav_order: 6  
 parent: Workshop Content  
 has_toc: false  
@@ -22,8 +22,10 @@ Input
 ## 3.1 Select columns
 pull(mtcars, wt)
 select(mtcars, mpg, wt)
+
 ## 3.2 Arrange columns
 relocate(mtcars, mpg, cyl, .after = last_col())
+
 ## 3.3 Add columns
 mutate(mtcars, gpm = 1 / mpg)
 transmute(mtcars, gpm = 1 / mpg)
@@ -39,6 +41,7 @@ y <- data.frame(
   G = c(3, 2, 1))
 y
 bind_cols(x, y) # you have to make sure the binding is meaningful by yourself
+
 ## 3.4 Rename columns
 rename(cars, distance = dist)
 ```
@@ -75,9 +78,8 @@ rename(cars, distance = dist)
 	<summary><u>Click here for solution</u></summary>
 	<div style="border: thin grey 1px; background-color: #eeebee; padding:15px;">
 		<p>
-		step1 <- select(iris, Species, Petal.Width, Petal.Length) <br>
-		step2 <- mutate(step1, Petal.Width.Length.Ratio = Petal.Width/Petal.Length) <br>
-		select(step2, Species, Petal.Width.Length.Ratio)
+		my_iris1 <- mutate(iris, Petal.Width.Length.Ratio = Petal.Width/Petal.Length) <br>
+		select(my_iris1, Species, Petal.Width.Length.Ratio)
 		</p>
     </div>
 </details>

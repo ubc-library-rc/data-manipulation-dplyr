@@ -1,6 +1,6 @@
 ---
 layout: default  
-title: Row-wise Manipulations
+title: Manipulating Rows
 nav_order: 5  
 parent: Workshop Content  
 has_toc: false  
@@ -31,9 +31,11 @@ slice_min(mtcars, mpg, prop = 0.25)
 slice_max(mtcars, mpg, prop = 0.25)
 slice_head(mtcars, n = 5)
 slice_tail(mtcars, n = 5)
+
 ## 2.2 Arrange cases
 arrange(mtcars, mpg)
 arrange(mtcars, desc(mpg))
+
 ## 2.3 Add cases
 add_row(cars, speed = 1, dist = 1)
 ### A showcase for bind_rows
@@ -77,7 +79,7 @@ bind_rows(x, y)
 		<p>
 		# solution 1 <br>
 		arrange(iris, Petal.Width) <br>
-		# soolution 2 <br>
+		# solution 2 <br>
 		slice_min(iris, Petal.Width, prop = 0.01) <br>
 		slice_max(iris, Petal.Width, prop = 0.01) <br>
 		 <br>

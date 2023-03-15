@@ -15,7 +15,7 @@ has_toc: false
 
 Now you are equipped to do basic data manipulation tasks in R with *dplyr*.  
 
-## Topics not covered include:
+## Topics for further learning:
 * the comparison of the functions from *dplyr* package and similar functions from the base R package, such as some shown in [STAT 545](https://stat545.com/dplyr-intro.html#use-filter-to-subset-data-row-wise:~:text=Compare%20with%20some%20base%20R%20code%20to%20accomplish%20the%20same%20things%3A),
 * optional arguments in each function that help control certain features,
 * various kinds of functions to use with `mutate()` and `summarise()`, such as some shown in the [*dplyr* Cheat Sheet](https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf),

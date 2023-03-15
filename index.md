@@ -28,9 +28,9 @@ At the end of this workshop, you will be able to:
 
 | 0:00 - 0:05 | Welcome and using Zoom|
 | 0:05 - 0:15 | Intro to *dplyr* |  
-| 0:15 - 0:25 | Row-wise manipulations |
-| 0:25 - 0:35 | Column-wise manipulations |  
-| 0:35 - 0:55 | Combining multiple manipulations | 
+| 0:15 - 0:30 | Manipulating rows |
+| 0:30 - 0:45 | Manipulating columns |  
+| 0:45 - 0:55 | Combining multiple manipulations | 
 | 0:55 - 1:00 | Recap |
 | 1:00 - 1:30 | Optional Q&A |
 

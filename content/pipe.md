@@ -54,7 +54,6 @@ In the solution for practice 3, intermediate results were used to do multiple ma
 	<div style="border: thin grey 1px; background-color: #eeebee; padding:15px;">
 		<p>
 		iris %>% <br>
-          select(Species, Petal.Width, Petal.Length) %>% <br>
           mutate(Petal.Width.Length.Ratio = Petal.Width/Petal.Length) %>% <br>
           select(Species, Petal.Width.Length.Ratio) %>% <br>
           group_by(Species) %>% <br>
