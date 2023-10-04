@@ -32,6 +32,7 @@ mtcars %>%
 ## 4.2 Pipe Operator
 
 The pipe operator `%>%` takes the thing on its left side and feeds that to its right side. You can read it as "then".
+Note: you can use CTRL+Shift+M (PC) or CMD+Shift+M (Mac) as a keyboard shortcut for %>% 
 
 Without pipe operators, multi-operation commands will be nested like Russian nesting dolls. For example, the following code does the same thing as the previouse code, but harder to write and read.
 
