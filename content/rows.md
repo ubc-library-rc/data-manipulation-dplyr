@@ -17,6 +17,9 @@ Please copy the following code and paste them into a script in the RStudio. We w
 Input
 {: .label .label-green}
 ```r
+# make sure you loaded the tidyverse libeary
+library(tidyverse)
+
 # Get to know the data
 ?mtcars
 mtcars
