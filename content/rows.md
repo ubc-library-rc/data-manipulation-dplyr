@@ -17,7 +17,7 @@ Please copy the following code and paste them into a script in the RStudio. We w
 Input
 {: .label .label-green}
 ```r
-# make sure you loaded the tidyverse libeary
+# make sure you loaded the tidyverse library
 library(tidyverse)
 
 # Get to know the data
