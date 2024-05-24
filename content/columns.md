@@ -20,15 +20,16 @@ Input
 ```r
 # Sample code from the dplyr cheat sheet
 ## 3.1 Select columns
-pull(mtcars, wt)
-select(mtcars, mpg, wt)
+pullmt=pull(mtcars, wt)
+selectmt=select(mtcars, mpg, wt)
 
 ## 3.2 Arrange columns
-relocate(mtcars, mpg, cyl, .after = last_col())
+relocatemt=relocate(mtcars, mpg, cyl, .after = last_col())
 
 ## 3.3 Add columns
-mutate(mtcars, gpm = 1 / mpg)
-transmute(mtcars, gpm = 1 / mpg)
+mutmt=mutate(mtcars, gpm = 1 / mpg)
+tmt=transmute(mtcars, gpm = 1 / mpg)
+
 ### A showcase for bind_cols
 x <- data.frame(
   A = c('a', 'b', 'c'), 
@@ -37,49 +38,26 @@ x <- data.frame(
 x
 y <- data.frame(
   E = c('a', 'b', 'd'), 
-  F = c('t', 'u', 'w'),
-  G = c(3, 2, 1))
+  G = c('t', 'u', 'w'), #skip F because F = FALSE, so it's best not to use that letter.
+  H = c(3, 2, 1))
 y
-bind_cols(x, y) # you have to make sure the binding is meaningful by yourself
+# You have to make sure the binding is meaningful by yourself. 
+# This is not the same as joins
+bind_cols(x, y) 
 
 ## 3.4 Rename columns
 rename(cars, distance = dist)
 ```
 
-
-## 3.1 Select Columns 
-![implicit](images/select_cols.png)
-<div style="text-align: right">
-	<p>Figure Source: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">dplyr Cheat Sheet</a>, CC BY SA Posit Software, PBC</p>
-</div>
-
-## 3.2 Arrange Columns
-![implicit](images/arrange_cols.png)
-<div style="text-align: right">
-	<p>Figure Source: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">dplyr Cheat Sheet</a>, CC BY SA Posit Software, PBC</p>
-</div>
-
-## 3.3 Add Columns
-![implicit](images/add_cols.png)
-![implicit](images/bind_cols.png)
-<div style="text-align: right">
-	<p>Figure Source: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">dplyr Cheat Sheet</a>, CC BY SA Posit Software, PBC</p>
-</div>
-
-## 3.4 Rename Columns
-![implicit](images/rename_cols.png)
-<div style="text-align: right">
-	<p>Figure Source: <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">dplyr Cheat Sheet</a>, CC BY SA Posit Software, PBC</p>
-</div>
-
-## Practice 3
+## Practice 2
 `iris` is a data frame with 150 cases (rows) and 5 variables (columns) named `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, and `Species`. Make a new data frame which contains only `Species` and the ratio of `Petal.Width` and `Petal.Length`.
 <details>
 	<summary><u>Click here for solution</u></summary>
 	<div style="border: thin grey 1px; background-color: #eeebee; padding:15px;">
 		<p>
-		my_iris1 <- mutate(iris, Petal.Width.Length.Ratio = Petal.Width/Petal.Length) <br>
-		select(my_iris1, Species, Petal.Width.Length.Ratio)
+		my_iris1 <- iris %>% 
+		mutate(Petal.Width.Length.Ratio = Petal.Width/Petal.Length) %>%
+		select(Species, Petal.Width.Length.Ratio)
 		</p>
     </div>
 </details>
@@ -89,4 +67,3 @@ rename(cars, distance = dist)
 
 
 This page is meant to introduce functions that help manipulate columns.  
-A pause here for questions.

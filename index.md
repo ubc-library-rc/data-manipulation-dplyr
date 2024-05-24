@@ -16,21 +16,22 @@ Participants are expected to have installed the latest versions of R and RStudio
 Install R from [https://cran.rstudio.com/](https://cran.rstudio.com/)   
 Install RStudio from [https://rstudio.com/products/rstudio/download/#download](https://rstudio.com/products/rstudio/download/#download)  
 
+Please note that while we go through many examples during the workshop, we do not cover all of the operations available in dplyr. 
+
 ## Learning objectives
 
 At the end of this workshop, you will be able to:
 1. Understand what the *dplyr* package is used for
-2. Manipulate rows to select, arrange, and add cases
-3. Manipulate columns to select, arrange, add, and rename variables
-4. Use pipe operator to combine multiple manipulations together
+2. Use pipe operator to combine multiple manipulations together
+3. Manipulate rows to select, arrange, and add cases
+4. Manipulate columns to select, arrange, add, and rename variables
 
 ## Schedule
 
 | 0:00 - 0:05 | Welcome and using Zoom|
 | 0:05 - 0:15 | Intro to *dplyr* |  
-| 0:15 - 0:30 | Manipulating rows |
-| 0:30 - 0:45 | Manipulating columns |  
-| 0:45 - 0:55 | Combining multiple manipulations | 
+| 0:15 - 0:35 | Manipulating rows |
+| 0:35 - 0:50 | Manipulating columns |   
 | 0:55 - 1:00 | Recap |
 | 1:00 - 1:30 | Optional Q&A |
 
