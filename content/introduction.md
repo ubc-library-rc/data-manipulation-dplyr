@@ -43,9 +43,8 @@ if(!require(tidyverse)) # checks if package can be loaded
 
 Tidy data is data that has been cleaned AND that is in the correct format for data analysis. Usually, it is best to have the data in a "long format" because of how code has to be written for data analysis.
 
-	<div style="border: thin grey 1px; background-color: #eeebee; padding:15px;">
-	    <img style="margin-left:1px; margin-bottom:10px" src="images/tidy.png" />
-    </div>
+ <img src="content/images/tidy.png"/>
+
 
 The pipe operator `%>%` takes the thing on its left side and feeds that to its right side. You can read it as "then".
 
