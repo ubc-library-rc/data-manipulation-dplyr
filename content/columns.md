@@ -81,9 +81,9 @@ What to notice: `bind_cols()` joins data by row position, so use it only when ro
 <details><summary><strong> click here for solution </strong></summary>
 
 <pre>
-my_iris1_base_pipe <- iris |>
-  mutate(Petal.Width.Length.Ratio = Petal.Width / Petal.Length) |>
-  select(Species, Petal.Width.Length.Ratio)
+iris$Species=str_replace(iris$Species, 
+            "setosa", 
+            "bristle-pointed iris")
 </pre>
 
 </details>
