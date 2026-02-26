@@ -98,30 +98,36 @@ Goal: Add one row manually and combine multiple data frames by rows.
 Input
 {: .label .label-green}
 ```r
-# add one row to an existing data frame
-x <- data.frame(
-  A = c("a", "b"),
-  B = c("t", "u"),
-  C = c(1, 2)
+# add one row to an existing restaurant menu
+breakfast_menu <- tibble(
+  item = c("Egg Sandwich", "Veggie Omelette"),
+  category = c("Sandwich", "Omelette"),
+  price = c(7.50, 8.25)
 )
 
-x_plus <- x %>%
-  add_row(A = "z", B = "q", C = 99)
-x_plus
+menu_updated <- breakfast_menu %>%
+  add_row(item = "Mushroom Toast", category = "Toast", price = 6.75)
+menu_updated
 
-# combine data frames with overlapping columns
-y <- data.frame(
-  A = c("c", "v"),
-  B = c("d", "w"),
-  D = c(TRUE, FALSE)
+# combine two day-by-day order logs with overlapping columns
+monday_orders <- tibble(
+  order_id = c(101, 102),
+  item = c("Egg Sandwich", "Veggie Omelette"),
+  dine_in = c(TRUE, FALSE)
 )
 
-bind_rows(x, y)
+tuesday_orders <- tibble(
+  order_id = c(201, 202),
+  item = c("Mushroom Toast", "Egg Sandwich"),
+  takeout = c(TRUE, TRUE)
+)
+
+bind_rows(monday_orders, tuesday_orders)
 ```
 
 What changed: `add_row()` appends one row; `bind_rows()` stacks data frames and fills missing columns with `NA`.
 
-Mini practice: Add one more row to `x_plus` with your own values.
+Mini practice: Add one more menu item to `menu_updated` and set your own price.
 
 ## Practice 1
 `iris` is a data frame with 150 cases (rows) and 5 variables (columns) such as `Petal.Width` and `Species`. In the `iris` data set, the cases with the minimum and maximum petal width belong to what species?
