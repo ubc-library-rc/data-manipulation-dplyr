@@ -27,9 +27,6 @@ mtcars
 ## 2.1 Filter rows with `filter()`
 Goal: Keep only cars with fuel efficiency above 20 mpg.
 
-Input
-{: .label .label-green}
-```r
 over20 <- mtcars %>%
   filter(mpg > 20)
 over20
