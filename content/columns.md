@@ -49,6 +49,33 @@ bind_cols(x, y)
 rename(cars, distance = dist)
 ```
 
+## Visual walkthrough
+
+### Select columns: `select()` and `pull()`
+![Visual for selecting columns](images/select_cols.png)
+
+What to notice: these functions keep only the columns you ask for, which narrows your data to relevant variables.
+
+### Arrange columns: `relocate()`
+![Visual for arranging column positions](images/arrange_cols.png)
+
+What to notice: this changes column order only; rows and values stay the same.
+
+### Add columns: `mutate()` and `transmute()`
+![Visual for adding columns](images/add_cols.png)
+
+What to notice: `mutate()` adds new columns while keeping existing ones, but `transmute()` keeps only new columns.
+
+### Rename columns: `rename()`
+![Visual for renaming columns](images/rename_cols.png)
+
+What to notice: only the column names change; the data inside each column does not.
+
+### Combine columns from multiple data frames: `bind_cols()`
+![Visual for binding columns](images/bind_cols.png)
+
+What to notice: `bind_cols()` joins data by row position, so use it only when rows correspond correctly.
+
 ## Practice 2
 `iris` is a data frame with 150 cases (rows) and 5 variables (columns) named `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, and `Species`. Make a new data frame which contains only `Species` and the ratio of `Petal.Width` and `Petal.Length`.
 <details>
