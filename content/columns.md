@@ -80,13 +80,13 @@ What to notice: `bind_cols()` joins data by row position, so use it only when ro
 `iris` is a data frame with 150 cases (rows) and 5 variables (columns) named `Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`, and `Species`. Make a new data frame which contains only `Species` and the ratio of `Petal.Width` and `Petal.Length`.
 <details>
 	<summary><u>Click here for solution</u></summary>
-	<div style="border: thin grey 1px; background-color: #eeebee; padding:15px;">
-		<p>
-		my_iris1 <- iris %>% 
-		mutate(Petal.Width.Length.Ratio = Petal.Width/Petal.Length) %>%
-		select(Species, Petal.Width.Length.Ratio)
-		</p>
-    </div>
+Input (`|>`)
+{: .label .label-green}
+```r
+my_iris1_base_pipe <- iris |>
+  mutate(Petal.Width.Length.Ratio = Petal.Width / Petal.Length) |>
+  select(Species, Petal.Width.Length.Ratio)
+```
 </details>
 &nbsp;    
 &nbsp;    

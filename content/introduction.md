@@ -67,8 +67,8 @@ Input
 newmtcars = summarise(group_by(mtcars, cyl), avg = mean(mpg))
 
 # with pipes - easier to read because each command is separated and in order
-newmtcars = mtcars %>% 
-  group_by(cyl) %>%
+newmtcars = mtcars |> 
+  group_by(cyl) |>
   summarise(avg = mean(mpg))
 
 
