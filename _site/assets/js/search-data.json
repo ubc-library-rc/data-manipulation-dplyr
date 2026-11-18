@@ -1,0 +1,240 @@
+{"0": {
+    "doc": "Acknowledgements",
+    "title": "Acknowledgements",
+    "content": "Book a consult for Quantitative Data Analysis (R, introductory Python, SPSS) if you would like related to this workshop (https://libcal.library.ubc.ca/appointments/research_commons) . Site content adapted from the dplyr Cheat Sheet and available under the MIT license. Site template adapted from the just-the-docs Jekyll template created by Patrick Marsceil and available under the MIT License. ",
+    "url": "/acknowledgements.html",
+    
+    "relUrl": "/acknowledgements.html"
+  },"1": {
+    "doc": "Manipulating Columns",
+    "title": "3. Manipulating Columns",
+    "content": "| Select columns | select(), pull() | . | Arrange columns | relocate() | . | Rename columns | rename() | . | Add columns | mutate(), transmute() | . Follow along with the code in section (3) of the R script. We will walk through each function with the visual explanations from the dplyr cheat sheet. ",
+    "url": "/content/columns.html#3-manipulating-columns",
+    
+    "relUrl": "/content/columns.html#3-manipulating-columns"
+  },"2": {
+    "doc": "Manipulating Columns",
+    "title": "3.1 Select columns with select() and pull()",
+    "content": "Goal: Keep only the columns you need. # select() keeps the columns you name hours_data &lt;- sgvp |&gt; select(id, province, age_group, gender, volunteer_hours) # A minus sign removes columns instead no_donations &lt;- sgvp |&gt; select(-donor, -donation_amount) # pull() takes a single column out as a vector (a list of values) rather than # a data frame. This is handy when a function needs plain values, like mean(). hours &lt;- sgvp |&gt; pull(volunteer_hours) mean(hours, na.rm = TRUE) . What changed: select() returns a data frame with fewer columns. pull() returns the values of one column on their own. ",
+    "url": "/content/columns.html#31-select-columns-with-select-and-pull",
+    
+    "relUrl": "/content/columns.html#31-select-columns-with-select-and-pull"
+  },"3": {
+    "doc": "Manipulating Columns",
+    "title": "3.2 Arrange columns with relocate()",
+    "content": "Goal: Change the order of the columns. # relocate() moves columns. By default it moves them to the front. hours_first &lt;- sgvp |&gt; relocate(volunteer_hours) # .after (or .before) says where to put them hours_after_id &lt;- sgvp |&gt; relocate(volunteer_hours, .after = id) . What changed: Only the column order changes. The rows and values stay the same. ",
+    "url": "/content/columns.html#32-arrange-columns-with-relocate",
+    
+    "relUrl": "/content/columns.html#32-arrange-columns-with-relocate"
+  },"4": {
+    "doc": "Manipulating Columns",
+    "title": "3.3 Rename columns with rename()",
+    "content": "Goal: Give a column a new name. # rename() changes column names: new name on the left, old name on the right sgvp_renamed &lt;- sgvp |&gt; rename(hours = volunteer_hours) . What changed: Only the column name changes. The data inside the column does not. ",
+    "url": "/content/columns.html#33-rename-columns-with-rename",
+    
+    "relUrl": "/content/columns.html#33-rename-columns-with-rename"
+  },"5": {
+    "doc": "Manipulating Columns",
+    "title": "3.4 Add columns with mutate() and transmute()",
+    "content": "Goal: Create new columns from existing ones. # mutate() adds a new column and keeps all the existing ones # Convert yearly hours to hours per week sgvp_weekly &lt;- sgvp |&gt; mutate(hours_per_week = volunteer_hours / 52) # transmute() adds new columns and drops everything else weekly_only &lt;- sgvp |&gt; transmute(id, hours_per_week = volunteer_hours / 52) . What changed: mutate() adds new columns while keeping existing ones. transmute() keeps only the columns you list. Practice . Add a column called dedicated that is TRUE for people who volunteered more than 500 hours, and FALSE otherwise. Click here for solution sgvp_dedicated &lt;- sgvp |&gt; mutate(dedicated = volunteer_hours &gt; 500) # Non-volunteers get NA rather than FALSE, because their hours are NA. Useful functions inside mutate() . mutate() works with “vectorized” functions: functions that take a column and return one new value for every row. Some useful ones: . # if_else(): one of two values, depending on a condition sgvp_dedicated &lt;- sgvp |&gt; mutate(dedicated = if_else(volunteer_hours &gt; 500, \"Dedicated\", \"Other\")) # case_when(): more than two categories. Conditions are checked in order, # and each row gets the value of the first condition that is TRUE. # .default is used for rows where none of the conditions are TRUE. sgvp_level &lt;- sgvp |&gt; mutate(volunteer_level = case_when( volunteer_hours &gt; 500 ~ \"High\", volunteer_hours &gt; 100 ~ \"Medium\", volunteer_hours &lt;= 100 ~ \"Low\", .default = \"Not a volunteer\" )) # between(): TRUE if a value is within a range (including both ends) sgvp_mid &lt;- sgvp |&gt; mutate(mid_range = between(volunteer_hours, 100, 500)) # min_rank(): ranks each row. Use desc() so the most hours gets rank 1. sgvp_ranked &lt;- sgvp |&gt; mutate(hours_rank = min_rank(desc(volunteer_hours))) # .after (or .before) puts the new column where you want it sgvp_ranked &lt;- sgvp |&gt; mutate(hours_rank = min_rank(desc(volunteer_hours)), .after = id) . See the “Vectorized Functions” section on the back of the dplyr cheat sheet for more.     . ",
+    "url": "/content/columns.html#34-add-columns-with-mutate-and-transmute",
+    
+    "relUrl": "/content/columns.html#34-add-columns-with-mutate-and-transmute"
+  },"6": {
+    "doc": "Manipulating Columns",
+    "title": "Manipulating Columns",
+    "content": " ",
+    "url": "/content/columns.html",
+    
+    "relUrl": "/content/columns.html"
+  },"7": {
+    "doc": "Outline",
+    "title": "Welcome to Data Manipulation with dplyr",
+    "content": "Data manipulation is a crucial part of data visualization and analysis. This workshop introduces common functions in the dplyr package to manipulate rows and columns. See the UBC library Research Commons event calendar for related workshops on various topics. In this workshop we will use data from Statistics Canada’s 2023 Survey on Giving, Volunteering and Participating to answer the question: Who are Canada’s most dedicated volunteers? . ",
+    "url": "/#welcome-to-data-manipulation-with-dplyr",
+    
+    "relUrl": "/#welcome-to-data-manipulation-with-dplyr"
+  },"8": {
+    "doc": "Outline",
+    "title": "Before the workshop",
+    "content": "This workshop assumes a basic understanding of the R language, but all learners are welcome to participate. To get ready: . | Install the latest versions of R and RStudio: . | R: https://cran.rstudio.com/ | RStudio: https://posit.co/download/rstudio-desktop/ | . | Download these two files and save them in the same folder: . | Download the data (sgvp_2023_workshop.csv) | Download the R script (Data_Manipulation_Script.R) | . | Open the R script in RStudio and go to Session &gt; Set Working Directory &gt; To Source File Location. | . Note: Data is adapted from Statistics Canada, Survey on Giving, Volunteering and Participating Public Use Microdata File, 2023. This does not constitute an endorsement by Statistics Canada of this product. ",
+    "url": "/#before-the-workshop",
+    
+    "relUrl": "/#before-the-workshop"
+  },"9": {
+    "doc": "Outline",
+    "title": "Learning objectives",
+    "content": "At the end of this workshop, you will be able to: . | Understand what the dplyr package is used for | Use the pipe operator to combine multiple manipulations together | Manipulate rows to filter, select, arrange, and combine cases | Manipulate columns to select, arrange, add, and rename variables | Combine these steps to answer a research question | . ",
+    "url": "/#learning-objectives",
+    
+    "relUrl": "/#learning-objectives"
+  },"10": {
+    "doc": "Outline",
+    "title": "Schedule",
+    "content": "| 0:00 - 0:05 | Welcome and using Zoom | . | 0:05 - 0:15 | Intro to dplyr and set up | . | 0:15 - 0:35 | Manipulating rows | . | 0:35 - 0:50 | Manipulating columns | . | 0:50 - 1:00 | Putting it all together and recap | . | 1:00 - 1:30 | Optional Q&amp;A and bonus content | . ",
+    "url": "/#schedule",
+    
+    "relUrl": "/#schedule"
+  },"11": {
+    "doc": "Outline",
+    "title": "Resources",
+    "content": ". | dplyr Cheat Sheet | vignette(“dplyr”) | Chapter 4 Data transformation in the book R for Data Science (2e) by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund | Chapter 6 Introduction to dplyr in the textbook for STAT 545 by Jenny Bryan and The STAT 545 TAs | . ",
+    "url": "/#resources",
+    
+    "relUrl": "/#resources"
+  },"12": {
+    "doc": "Outline",
+    "title": "Outline",
+    "content": " ",
+    "url": "/",
+    
+    "relUrl": "/"
+  },"13": {
+    "doc": "Introduction",
+    "title": "1. Introduction to dplyr",
+    "content": " ",
+    "url": "/content/introduction.html#1-introduction-to-dplyr",
+    
+    "relUrl": "/content/introduction.html#1-introduction-to-dplyr"
+  },"14": {
+    "doc": "Introduction",
+    "title": "1.1 What is dplyr?",
+    "content": "A part of the tidyverse meta-package that facilitates data manipulation. As with all other tidyverse packages, dplyr has extensive documentation and cheat sheets available. ",
+    "url": "/content/introduction.html#11-what-is-dplyr",
+    
+    "relUrl": "/content/introduction.html#11-what-is-dplyr"
+  },"15": {
+    "doc": "Introduction",
+    "title": "1.2 Set up",
+    "content": "Download the data . In this workshop we will use the 2023 Survey on Giving, Volunteering and Participating (SGVP) from Statistics Canada. The survey asked about 27,000 people across Canada about their volunteering and charitable giving. Our question for today is: . Who are Canada’s most dedicated volunteers? . Download these two files and save them in the same folder: . | Download the data (sgvp_2023_workshop.csv) | Download the R script (Data_Manipulation_Script.R) | . Open the R script in RStudio. Then go to Session &gt; Set Working Directory &gt; To Source File Location. This tells R to look for data in the same folder where the script is saved. Install and load the package . In order to be able to use the functions from the dplyr package, let’s (install and) load it first. if(!require(tidyverse)) # checks if package can be loaded { # if not, install and then load install.packages(\"tidyverse\") # install package library(tidyverse) # load package } . Click here for outputs If package already installed and can be loaded: . If package not installed: . Read in the data . sgvp &lt;- read_csv(\"sgvp_2023_workshop.csv\") . Each row is one person who answered the survey. The columns include their province, age group, gender, whether they volunteered and for how many hours, and whether they donated and how much. ",
+    "url": "/content/introduction.html#12-set-up",
+    
+    "relUrl": "/content/introduction.html#12-set-up"
+  },"16": {
+    "doc": "Introduction",
+    "title": "1.3 Tidy data",
+    "content": "Tidy data is data that has been cleaned AND that is in the correct format for data analysis. Usually, it is best to have the data in a “long format” because of how code has to be written for data analysis. Our survey data is already tidy: each variable is in its own column and each observation (one person) is in its own row. ",
+    "url": "/content/introduction.html#13-tidy-data",
+    
+    "relUrl": "/content/introduction.html#13-tidy-data"
+  },"17": {
+    "doc": "Introduction",
+    "title": "1.4 Pipes",
+    "content": "The pipe operator |&gt; takes the result on its left side and passes it to the function on its right side. You can read it as “and then”. The use of the pipe operator is based on some patterns shared by most of the functions from the dplyr package: . | The input is a data frame, which is usually the first argument for a function. | The output is also a data frame. | . Therefore, you can pass on the output from a function as input for the next function. Most data manipulation tasks need several steps. For example, to keep only people living in British Columbia, and then keep only the columns we need: . # without using pipes - operations are nested sgvp_bc &lt;- select(filter(sgvp, province == \"British Columbia\"), age_group, gender, volunteer, weight) # with pipes - easier to read because each command is separated and in order sgvp_bc &lt;- sgvp |&gt; filter(province == \"British Columbia\") |&gt; select(age_group, gender, volunteer, weight) . ",
+    "url": "/content/introduction.html#14-pipes",
+    
+    "relUrl": "/content/introduction.html#14-pipes"
+  },"18": {
+    "doc": "Introduction",
+    "title": "Introduction",
+    "content": " ",
+    "url": "/content/introduction.html",
+    
+    "relUrl": "/content/introduction.html"
+  },"19": {
+    "doc": "Land acknowledgement",
+    "title": "Land acknowledgement",
+    "content": "Before beginning the workshop, we’d like to acknowledge the Indigenous lands where we are located. The UBC Vancouver campus is located on the traditional, ancestral, and unceded territory of the xʷməθkʷəy̓əm (Musqueam), səlilwətaɬ (Tsleil-Waututh), and Skwxwú7mesh-ulh Temíx̱w (Squamish) peoples. This map is from Native Land Digital. Please take a moment to explore native-land.ca and learn about the Indigenous territories, languages, and treaties in your area. ",
+    "url": "/land-acknowledgement.html",
+    
+    "relUrl": "/land-acknowledgement.html"
+  },"20": {
+    "doc": "Recap",
+    "title": "4. Recap",
+    "content": " ",
+    "url": "/content/recap.html#4-recap",
+    
+    "relUrl": "/content/recap.html#4-recap"
+  },"21": {
+    "doc": "Recap",
+    "title": "Putting it all together",
+    "content": "Our question was: Who are Canada’s most dedicated volunteers? . We can answer it with one pipeline that uses functions from both the rows and columns sections: . top_10 &lt;- sgvp |&gt; filter(volunteer == \"Volunteer\") |&gt; # keep volunteers mutate(hours_per_week = volunteer_hours / 52) |&gt; # add hours per week slice_max(hours_per_week, n = 10) |&gt; # keep the top 10 select(province, age_group, gender, hours_per_week) |&gt; # keep key columns rename(weekly_hours = hours_per_week) # tidy the name . Look at top_10. What do the most dedicated volunteers have in common? . Practice . Change the pipeline to find the 10 people who donated the most. Show their province, age group, gender, and how much they donated per month. Click here for solution top_donors &lt;- sgvp |&gt; filter(donor == \"Giver\") |&gt; mutate(monthly_donation = donation_amount / 12) |&gt; slice_max(monthly_donation, n = 10) |&gt; select(province, age_group, gender, monthly_donation) . ",
+    "url": "/content/recap.html#putting-it-all-together",
+    
+    "relUrl": "/content/recap.html#putting-it-all-together"
+  },"22": {
+    "doc": "Recap",
+    "title": "This workshop covered:",
+    "content": "Manipulating rows . | filter(): keep rows that meet a condition | distinct(): see the unique values in a column | slice(), slice_max(): pick rows by position or by the largest values | arrange(): sort rows | bind_rows(): stack data frames on top of each other | . Manipulating columns . | select(), pull(): keep columns, or take one out as a vector | relocate(): change the order of columns | rename(): change column names | mutate(), transmute(): add new columns, including with if_else() and case_when() | . And how to combine multiple manipulations with the pipe |&gt;. Now you are equipped to do basic data manipulation tasks in R with dplyr. ",
+    "url": "/content/recap.html#this-workshop-covered",
+    
+    "relUrl": "/content/recap.html#this-workshop-covered"
+  },"23": {
+    "doc": "Recap",
+    "title": "Topics for further learning:",
+    "content": ". | summarising data with group_by() and summarise(), and combining tables with joins (see the bonus sections in the R script), | the comparison of the functions from dplyr package and similar functions from the base R package, such as some shown in STAT 545, | optional arguments in each function that help control certain features, | various kinds of functions to use with mutate() and summarise(), such as some shown in the dplyr Cheat Sheet, | manipulate multiple variables at once, such as some shown in the dplyr Cheat Sheet. | . Practice and use additional resources to build your skill to the next level. You can also attend other workshops or book a consultation with the research commons. ",
+    "url": "/content/recap.html#topics-for-further-learning",
+    
+    "relUrl": "/content/recap.html#topics-for-further-learning"
+  },"24": {
+    "doc": "Recap",
+    "title": "Resources",
+    "content": ". | Workshops | Book a consultation | vignette(“dplyr”) | Chapter 4 Data transformation in the book R for Data Science (2e) by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund | Chapter 6 Introduction to dplyr in the textbook for STAT 545 by Jenny Bryan and The STAT 545 TAs | UBC Library workshop: Relational data in R (for more on joins) | . ",
+    "url": "/content/recap.html#resources",
+    
+    "relUrl": "/content/recap.html#resources"
+  },"25": {
+    "doc": "Recap",
+    "title": "Recap",
+    "content": " ",
+    "url": "/content/recap.html",
+    
+    "relUrl": "/content/recap.html"
+  },"26": {
+    "doc": "Manipulating Rows",
+    "title": "2. Manipulating Rows",
+    "content": "| Select rows | filter(), distinct(), slice() | . | Arrange rows | arrange() | . | Combine rows | bind_rows() | . Follow along with the code in section (2) of the R script. We will walk through each function with the visual explanations from the dplyr cheat sheet. ",
+    "url": "/content/rows.html#2-manipulating-rows",
+    
+    "relUrl": "/content/rows.html#2-manipulating-rows"
+  },"27": {
+    "doc": "Manipulating Rows",
+    "title": "2.1 Filter rows with filter()",
+    "content": "Goal: Keep only the rows that meet a condition. # Keep only the people who volunteered volunteers &lt;- sgvp |&gt; filter(volunteer == \"Volunteer\") # Keep people who volunteered more than 500 hours in the past year dedicated &lt;- sgvp |&gt; filter(volunteer_hours &gt; 500) . Useful comparison operators: . | == equal to | != not equal to | . | &gt; greater than | &lt; less than | . | &gt;= greater than or equal | &lt;= less than or equal | . Non-volunteers have NA for volunteer_hours. filter() drops any row where the condition can’t be checked, so they are removed automatically. You can combine conditions: . # A comma (or &amp;) means AND: both conditions must be true dedicated_bc &lt;- sgvp |&gt; filter(volunteer_hours &gt; 500, province == \"British Columbia\") # | means OR: at least one condition must be true west_coast &lt;- sgvp |&gt; filter(province == \"British Columbia\" | province == \"Alberta\") # %in% is a shortcut for several ORs on the same column prairies &lt;- sgvp |&gt; filter(province %in% c(\"Manitoba\", \"Saskatchewan\", \"Alberta\")) . What changed: You now have a smaller data frame that keeps only rows matching the condition. Practice . Keep volunteers aged 15 to 24 who volunteered more than 200 hours. Click here for solution young_dedicated &lt;- sgvp |&gt; filter(age_group == \"15 to 24 years\", volunteer_hours &gt; 200) . ",
+    "url": "/content/rows.html#21-filter-rows-with-filter",
+    
+    "relUrl": "/content/rows.html#21-filter-rows-with-filter"
+  },"28": {
+    "doc": "Manipulating Rows",
+    "title": "2.2 Keep unique rows with distinct()",
+    "content": "Goal: See the unique values in a column. This is a quick way to see what categories a column contains. age_groups &lt;- sgvp |&gt; distinct(age_group) # With more than one column, distinct() keeps each unique COMBINATION age_gender &lt;- sgvp |&gt; distinct(age_group, gender) . What changed: Duplicate values are removed, so each value (or combination) appears once. Practice . What education levels are in the data? How many are there? . Click here for solution education_levels &lt;- sgvp |&gt; distinct(education) # There are 5, including \"Not stated\" . ",
+    "url": "/content/rows.html#22-keep-unique-rows-with-distinct",
+    
+    "relUrl": "/content/rows.html#22-keep-unique-rows-with-distinct"
+  },"29": {
+    "doc": "Manipulating Rows",
+    "title": "2.3 Pick specific rows with slice() and helpers",
+    "content": "Goal: Select rows by position, or by the largest or smallest values. # slice() keeps rows by their POSITION (row number) rows_10_15 &lt;- sgvp |&gt; slice(10:15) # slice_max() keeps the rows with the largest values # The 10 people who volunteered the most hours: top_volunteers &lt;- sgvp |&gt; slice_max(volunteer_hours, n = 10) . What changed: slice() selects rows by position. slice_max() and slice_min() select rows with the largest or smallest values of a column. Practice . Find the 10 people who donated the most money (donation_amount). Click here for solution top_donors &lt;- sgvp |&gt; slice_max(donation_amount, n = 10) . ",
+    "url": "/content/rows.html#23-pick-specific-rows-with-slice-and-helpers",
+    
+    "relUrl": "/content/rows.html#23-pick-specific-rows-with-slice-and-helpers"
+  },"30": {
+    "doc": "Manipulating Rows",
+    "title": "2.4 Reorder rows with arrange()",
+    "content": "Goal: Sort rows by one or more columns. # arrange() sorts rows by a column, smallest to largest by_hours &lt;- sgvp |&gt; arrange(volunteer_hours) # desc() sorts from largest to smallest. Here we sort by province, then by # hours (largest first) within each province. by_province_hours &lt;- sgvp |&gt; arrange(province, desc(volunteer_hours)) . What changed: The same rows are kept, but their order changes. Practice . Sort the data by donation_amount, largest first. Click here for solution by_donation &lt;- sgvp |&gt; arrange(desc(donation_amount)) . ",
+    "url": "/content/rows.html#24-reorder-rows-with-arrange",
+    
+    "relUrl": "/content/rows.html#24-reorder-rows-with-arrange"
+  },"31": {
+    "doc": "Manipulating Rows",
+    "title": "2.5 Combine rows with bind_rows()",
+    "content": "Goal: Stack data frames on top of each other. # Top 5 volunteers in BC and in Ontario top_bc &lt;- sgvp |&gt; filter(province == \"British Columbia\") |&gt; slice_max(volunteer_hours, n = 5) top_on &lt;- sgvp |&gt; filter(province == \"Ontario\") |&gt; slice_max(volunteer_hours, n = 5) top_bc_on &lt;- bind_rows(top_bc, top_on) . What changed: bind_rows() stacks the data frames, matching columns by name. If one data frame has a column the other doesn’t, the missing values are filled with NA. Practice . Add the top 5 volunteers from Quebec to top_bc_on. Click here for solution top_qc &lt;- sgvp |&gt; filter(province == \"Quebec\") |&gt; slice_max(volunteer_hours, n = 5) top_bc_on_qc &lt;- bind_rows(top_bc_on, top_qc) .     . ",
+    "url": "/content/rows.html#25-combine-rows-with-bind_rows",
+    
+    "relUrl": "/content/rows.html#25-combine-rows-with-bind_rows"
+  },"32": {
+    "doc": "Manipulating Rows",
+    "title": "Manipulating Rows",
+    "content": " ",
+    "url": "/content/rows.html",
+    
+    "relUrl": "/content/rows.html"
+  },"33": {
+    "doc": "Workshop Content",
+    "title": "Workshop Content",
+    "content": " ",
+    "url": "/content/workshop_content.html",
+    
+    "relUrl": "/content/workshop_content.html"
+  }
+}
